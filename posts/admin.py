@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, PostFile
+from .models import Post, PostFile, Comment, Like
 
 
 class PostFileInlineAdmin(admin.StackedInline):
@@ -14,15 +14,17 @@ class PostFileInlineAdmin(admin.StackedInline):
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'user', 'is_active', 'created_time')
     inlines = (PostFileInlineAdmin,)
-    # actions = None
 
-    # def has_delete_permission(self, request, obj=None):
-    #     return False
 
-    # def has_add_permission(self, request):
-    #     return False
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('post', 'user', 'is_approved')
+    list_filter = ('is_approved',)
+    date_hierarchy = 'created_time'
 
-# @admin.register(PostFile)
-# class PostFileAdmin(admin.ModelAdmin):
-#     pass
 
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ('post', 'user', 'is_liked')
+    list_filter = ('is_liked',)
+    date_hierarchy = 'created_time'

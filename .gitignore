@@ -11,7 +11,7 @@ __pycache__/
 env/
 local_*.py
 
-# media/*
+media/
 # static/*
 # logs/*
 # .env

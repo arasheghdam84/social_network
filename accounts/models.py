@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
 
 
 class Country(models.Model):
@@ -13,14 +12,19 @@ class Country(models.Model):
     class Meta:
         verbose_name = 'Country'
         verbose_name_plural = 'Countries'
-        # db_table = 'countries'
+
+    def __str__(self):
+        return self.name
 
 
 class Profile(models.Model):
     user = models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     phone_number = models.BigIntegerField(blank=True, null=True, unique=True)
     country = models.ForeignKey(to=Country, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(blank=True, upload_to='profile_avatars/')
+
+    def __str__(self):
+        return f'{self.user} - {self.phone_number}'
 
 
 class Device(models.Model):

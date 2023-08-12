@@ -16,6 +16,16 @@ from datetime import timedelta
 
 from .local_settings import *
 
+# DEBUG = True
+# DEVEL = False
+# ALLOWED_HOSTS = ['*']
+#
+# DB_NAME = 'social_network'
+# DB_HOST = '0.0.0.0'
+# DB_USER = 'social_network_user'
+# DB_PASS = 'social_network_pass'
+#
+# BASE_URL = 'http://127.0.0.1/'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = f'{BASE_URL}media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Default primary key field type
